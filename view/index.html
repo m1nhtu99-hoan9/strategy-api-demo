@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./assets/vendor/bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+        <script
+      defer
+      src="./assets/vendor/bootstrap-4.4.1-dist/js/jquery-3.4.1.slim.min.js"
+    ></script>
+    <script
+      defer
+      src="./assets/vendor/bootstrap-4.4.1-dist/js/popper.min.js"
+    ></script>
+    <script
+      defer
+      src="./assets/vendor/bootstrap-4.4.1-dist/js/bootstrap.min.js"
+    ></script>
+    <style>
+      input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        transform: scale(1.5);
+        padding: 10px;
+      }
+      main {
+        padding-top: 10px;
+        padding-left: 5px;
+        padding-right: 5px;  
+      }
+      div.guidance {
+        text-align: justify;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 10px;
+        outline: 0.05px solid #8053A0;
+      }
+      button {
+        padding-bottom: 0.25rem;
+      }
+    </style>
+    <title>Strategy API Demo</title>
+  </head>
+  <body>
+    <main>
+      <div class="row">
+        <div class="col-3">
+          <div class="choose-strategy guidance">
+            <h5>Admission Requirements for:</h5> 
+            <ul>
+              <li>
+                <p6>
+                  <b>Cloud Computing:</b>
+                  Have attended at least 5 other courses, including <em>Introduction to Programming</em>, 
+                  <em>Data Structure & Algorithms</em> & <em>Software Development Life Cycle</em>.
+                </p6>
+              </li>
+              <li>
+                <p6>
+                  <b>Advanced Programming:</b>
+                  Have attended at least 4 other courses, including <em>Introduction to Networking</em> & 
+                  <em>Introduction to Security</em>.
+                </p6>
+              </li>
+            </ul>
+          </div>
+          <form name="choose-strategy">
+            <div class="form-group choose-strategy">
+              <label for="course-name">Choose Course Name: </label>
+              <select class="form-control choose-strategy" id="course-name">
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Advanced Programming">Advanced Programming</option>
+              </select>
+            </div>
+            <div class="form-group choose-strategy">
+              <label for="num-of-applicants">Input Number of Applicants: </label>
+              <input type="text" class="form-control choose-strategy" id="num-of-applicants"/>
+            </div>
+            <div class="form-group choose-strategy">
+              <button type="button" class="btn btn-outline-primary">
+                Let's input applicants' info ⟶
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-6">
+          <table class="table applicantsInfo">
+            <thead>
+              <tr>
+                <th scope="col">Student ID</td>
+                <th scope="col">Taken Courses</td>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+          <button class="btn btn-primary" type="submit" style="visibility: hidden;">Show admitted applicants ⟶</button>
+        </div>
+        <div class="col-2">
+          <table class="table admissionResult">
+            <thead>
+              <tr>
+                <th scope="col">Admitted Students</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>  
+          </table>
+          <div class="admitted-num-wrapper">
+            Number of admitted students: <span id="admitted-num" style="color: #2f203b"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+    </div>
+
+    <script src="./assets/scripts/input-table.js"></script>
+    <script src="./assets/scripts/result-table.js"></script>
+    <script>
+      var btnToInput = document.querySelectorAll('button')[0];
+      var btnToResult = document.querySelectorAll('button')[1]; 
+      var choosenStrategy = document.querySelector('#course-name').value;
+      var tblApplicantsInfo = document.querySelector('table.applicantsInfo').tBodies[0]; 
+      var tblAdmissionResult = document.querySelector('table.admissionResult').tBodies[0];
+
+      btnToInput.addEventListener('click', function (event) {
+        let numOfRows = document.querySelector('#num-of-applicants').value;
+
+        var eachRow = renderARow(choosenStrategy); 
+        for (let i=0; i<numOfRows; i++) {
+          tblApplicantsInfo.appendChild(eachRow.cloneNode(true));
+        }
+
+        btnToResult.style.visibility = "visible"; 
+        btnToInput.style.visibility = "hidden"; 
+      });
+
+      btnToResult.addEventListener('click', function (event) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', `${encodeURI(choosenStrategy)}`);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.responseType = 'json';
+
+        xhr.addEventListener('load', function (event) {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status > 201) {
+            console.warn(xhr.response);
+          } else {
+            const res = xhr.response; 
+
+            document.querySelector('span#admitted-num').innerHTML = res.length;
+            res.forEach(el => {
+              let rowWrapper = document.createElement('tr');
+              let cellWrapper = document.createElement('td');
+              cellWrapper.innerHTML = `<span style="color: #2f203b">${el['id']}</span>`;
+              rowWrapper.appendChild(cellWrapper);
+
+              tblAdmissionResult.appendChild(rowWrapper.cloneNode(true));
+            });
+          }
+        });
+
+        xhr.addEventListener('timeout', function (event) {
+          event.preventDefault();
+          console.error('Server timeout error!');
+        });
+
+        xhr.addEventListener('error', function (event) {
+          console.error('Request not sent! Please reload page & try again');
+        });
+
+        btnToResult.style.visibility = "hidden";
+        const dataToSend = convertTableBodyToJSON(tblApplicantsInfo);
+        xhr.send(JSON.stringify(dataToSend));
+      }); 
+    </script>
+  </body>
+</html>

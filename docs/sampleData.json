@@ -1,0 +1,108 @@
+[
+  {
+    "id": "GCH01",
+    "taken_courses": [
+      "Introduction to Programming",
+      "Introduction to Security",
+      "Data Structure & Algorithms",
+      "Software Development Life Cycle",
+      "Advanced Programming",
+      "Business Skills",
+      "Vovinam 1"
+    ]
+  },
+  {
+    "id": "GCH02",
+    "taken_courses": [
+      "Introduction to Programming",
+      "Data Structure & Algorithms",
+      "Web Design Fundamentals",
+      "Internet of Things",
+      "Business Applcation Design",
+      "Business Skills"
+    ]
+  },
+  {
+    "id": "GCH03",
+    "taken_courses": [
+      "Introduction to Networking",
+      "Introduction to Security",
+      "Software Development Life Cycle",
+      "Business Skills"
+    ]
+  },
+  {
+    "id": "GCH04",
+    "taken_courses": [
+      "Introduction to Programming",
+      "Introduction to Networking",
+      "Introduction to Security",
+      "Data Structure & Algorithms"
+    ]
+  },
+  {
+    "id": "GCH05",
+    "taken_courses": [
+      "Internet of Things",
+      "Advanced Programming",
+      "Business Applcation Design",
+      "Business Skills",
+      "Vovinam 1"
+    ]
+  },
+  {
+    "id": "GCH06",
+    "taken_courses": [
+      "Introduction to Programming",
+      "Introduction to Networking",
+      "Introduction to Security",
+      "Data Structure & Algorithms",
+      "Web Design Fundamentals",
+      "Software Development Life Cycle",
+      "Internet of Things",
+      "Business Applcation Design"
+    ]
+  },
+  {
+    "id": "GCH07",
+    "taken_courses": [
+      "Introduction to Programming",
+      "Introduction to Networking",
+      "Introduction to Security",
+      "Data Structure & Algorithms",
+      "Web Design Fundamentals",
+      "Software Development Life Cycle",
+      "Cloud Computing",
+      "Internet of Things",
+      "Business Skills"
+    ]
+  },
+  {
+    "id": "GCH08",
+    "taken_courses": ["Vovinam 1"]
+  },
+  {
+    "id": "GCH09",
+    "taken_courses": ["Business Skills", "Vovinam 1"]
+  },
+  {
+    "id": "GCH10",
+    "taken_courses": [
+      "Introduction to Programming",
+      "Data Structure & Algorithms",
+      "Software Development Life Cycle",
+      "Vovinam 1"
+    ]
+  },
+  {
+    "id": "GCH11",
+    "taken_courses": [
+      "Introduction to Networking",
+      "Introduction to Security",
+      "Web Design Fundamentals",
+      "Cloud Computing",
+      "Advanced Programming",
+      "Business Skills"
+    ]
+  }
+]
