@@ -25,7 +25,6 @@ app.post('/:courseName', (req, res) => {
 
     let thisCourse = new Course(decodeURI(req.params.courseName), givenStudents);
     thisCourse.strategyForAdmission = AdmissionStrategy(decodeURI(req.params.courseName));
-    console.log(`${util.inspect(thisCourse)}`);
     thisCourse.examineApplicants();
 
     const admittedApplicants = thisCourse.applicants;
@@ -33,7 +32,6 @@ app.post('/:courseName', (req, res) => {
     res.status(200).json(admittedApplicants);
   }
   catch (error) {
-    console.error(error.stack);
     res.status(400).json({ message: error.toString() });
   }
 })
