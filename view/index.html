@@ -127,14 +127,18 @@
     <script>
       var btnToInput = document.querySelectorAll('button')[0];
       var btnToResult = document.querySelectorAll('button')[1]; 
-      var choosenStrategy = document.querySelector('#course-name').value;
+      var _choosenStrategy;
       var tblApplicantsInfo = document.querySelector('table.applicantsInfo').tBodies[0]; 
       var tblAdmissionResult = document.querySelector('table.admissionResult').tBodies[0];
 
       btnToInput.addEventListener('click', function (event) {
         let numOfRows = document.querySelector('#num-of-applicants').value;
+        let choosenStrategy = document.querySelector('#course-name').value; 
+        _choosenStrategy = choosenStrategy; 
 
         var eachRow = renderARow(choosenStrategy); 
+        console.log(choosenStrategy);
+        console.log(eachRow);
         for (let i=0; i<numOfRows; i++) {
           tblApplicantsInfo.appendChild(eachRow.cloneNode(true));
         }
@@ -145,7 +149,7 @@
 
       btnToResult.addEventListener('click', function (event) {
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', `${encodeURI(choosenStrategy)}`);
+        xhr.open('POST', `${encodeURI(_choosenStrategy)}`);
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.responseType = 'json';
 

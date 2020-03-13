@@ -1,5 +1,4 @@
 const express = require('express');
-const util = require('util');
 const path = require('path');
 const Student = require('./model/Student');
 const Course = require('./model/Course');
@@ -14,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'view')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/view/index.html'))
-})
+});
 
 app.post('/:courseName', (req, res) => {
   try {
@@ -24,7 +23,7 @@ app.post('/:courseName', (req, res) => {
       });
 
     let thisCourse = new Course(decodeURI(req.params.courseName), givenStudents);
-    thisCourse.strategyForAdmission = AdmissionStrategy(decodeURI(req.params.courseName));
+    thisCourse.strategyForAdmission(AdmissionStrategy(decodeURI(req.params.courseName)));
     thisCourse.examineApplicants();
 
     const admittedApplicants = thisCourse.applicants;
@@ -34,8 +33,8 @@ app.post('/:courseName', (req, res) => {
   catch (error) {
     res.status(400).json({ message: error.toString() });
   }
-})
+});
 
 app.listen(3000, () => {
   console.log('Server up and running on port 3000');
-})
+});

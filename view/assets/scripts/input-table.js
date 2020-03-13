@@ -52,7 +52,7 @@ var renderAnOption = function (courseName) {
 var renderOptionsCell = function (courseNameStrategy) {
   var optionsCellWrapper = document.createElement('td');
 
-  var LIST_FOR_THIS_COURSE = LIST_OF_ALL_COURSES.filter(el => el !== courseNameStrategy);
+  var LIST_FOR_THIS_COURSE = LIST_OF_ALL_COURSES.filter(el => el != courseNameStrategy);
   var options = LIST_FOR_THIS_COURSE.map(elCourse => renderAnOption(elCourse));
   options.forEach(el => optionsCellWrapper.appendChild(el));
 
