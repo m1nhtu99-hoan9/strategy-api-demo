@@ -2,7 +2,8 @@
 layout: default
 ---
 
-Author: MinhTu Thomas Hoang
+Author: [MinhTu Thomas Hoang](https://github.com/mnhthng-thms)
+
 Last modified at March 15th 2020
 
 # Discussion on Translating From Modelling Language of OOP Class Diagram To Code Implementation of JavaScript
