@@ -4,7 +4,7 @@ This is my code submission for Unit 20-_Advanced Programming_ of [Pearson BTEC H
 
 ## Screenshots
 
-![Front-end screenshots](/assets/images/screenshots.gif)
+![Front-end screenshots](/docs/assets/images/screenshots.gif)
 
 ## Documentation
 
