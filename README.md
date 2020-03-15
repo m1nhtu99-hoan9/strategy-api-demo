@@ -8,7 +8,9 @@ This is my code submission for Unit 20-_Advanced Programming_ of [Pearson BTEC H
 
 ## Documentation
 
-Documentation of this project is accessible at [https://mnhthng-thms.github.io/strategy-api-demo/index](https://mnhthng-thms.github.io/strategy-api-demo/index)
+Documentation of this project is accessible at [https://mnhthng-thms.github.io/strategy-api-demo/](https://mnhthng-thms.github.io/strategy-api-demo/)
+
+![UML Class Diagram](/docs/assets/images/strategy-class-diagram.png)
 
 To try this application, clone [this repo](https://github.com/mnhthng-thms/strategy-api-demo) into your local machine. Then:
 
